@@ -1,6 +1,6 @@
 import express from '../utils/express';
 const router = express.Router();
-
+/*
 const ControllerCourse = require('../controllers/ControllerCourse');
 router.get('/course/', ControllerCourse.getCourseList);
 router.get('/course/COURSE=:course_id', ControllerCourse.getCourse);
@@ -16,6 +16,6 @@ router.post('/student/', ControllerStudent.postRegisterStudent);
 router.delete('/student/STUDENT=:student_id', ControllerStudent.deleteStudent);
 router.put('/student/STUDENT=:student_id', ControllerStudent.putStudent);
 router.patch('/student/STUDENT=:student_id', ControllerStudent.patchStudent);
-
+*/
 
 module.exports = router;

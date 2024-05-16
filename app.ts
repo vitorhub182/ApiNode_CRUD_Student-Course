@@ -1,10 +1,11 @@
 
 import express from 'express';
-
+const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const rotaManagement = require('./routes/Student&Course');
 // inicia o serviço morgan
+
 app.use(morgan('dev'));
 
 app.use(express);
@@ -44,4 +45,4 @@ app.use((error, req, res, next) => {
     })
 })
 
-module.exports = app;
+export default app;

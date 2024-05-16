@@ -1,6 +1,6 @@
 const http = require('http'); // crio o serviço http
-const app = require('./app'); // crio o serviço da aplicação 
-const port = 3004; // defino a porta padrão // process.env.PORT ||
+import app from './app'; // crio o serviço da aplicação 
+const port = 3001; // defino a porta padrão // process.env.PORT ||
 const server = http.createServer(app); // Crio o server e envio o app dentro desse server
 
 server.listen(port); /* faço o server escutar na porta desejada 
