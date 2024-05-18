@@ -7,7 +7,6 @@ const rotaManagement = require('./routes/Student&Course');
 // inicia o serviço morgan
 app.use(morgan('dev'));
 // adiciona o express ao app
-app.use(express);
 
 // Apenas dados simples
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -16,14 +15,13 @@ app.use(bodyParser.json());
 
 // Rota padrão. para testes
 app.use('/teste', (req, res, next) => {
-    
     res.status(200).send({
         mensagem: 'Ok, Aplicação Node está em desenvolvimento',
     });
  });
 
 
-app.use('/management', rotaManagement);
+app.use('', rotaManagement);
 
 // Tratamento para quando não se encontra nenhuma rota
 app.use((req,res,next) => {

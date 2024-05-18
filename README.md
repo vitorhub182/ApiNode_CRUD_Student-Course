@@ -34,3 +34,11 @@ crie tsconfig.json e insira
 ```shell
 npm run start:dev
 ```
+### BANCO DDE DADOS POSTGRES
+```shell
+npm install sequelize pg pg-hstore
+```
+### Inicializando o banco
+```shell
+docker-compose up
+```
