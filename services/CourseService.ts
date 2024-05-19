@@ -1,5 +1,10 @@
-const CourseConnect = require('../models/Course');
-import sequelize from '../utils/sequelize';
+import {Course} from '../models/Course';
+import {Student} from '../models/Student';
+/*
+import {Profile} from '../models/CourseStudent';
+import {User}  from '../models/CourseStudent';
+*/
+const {CourseStudent} = require('../models/CourseStudent');
 
 interface  Retorno {
     tipo: string;
@@ -10,8 +15,18 @@ class CourseService {
 
     async getCourseList() {
         try {
-            const courses = await CourseConnect.findAll();
-            console.log(courses);
+            const courses = await Course.findAll();
+            /* TESTE
+            const amidala = await User.create({ username: 'p4dm3', points: 1000 });
+            const queen = await Profile.create({ name: 'Queen' });
+            await amidala.addProfile(queen, { through: { selfGranted: false } });
+            const register = await User.findOne({
+              where: { username: 'p4dm3' },
+              include: Profile,
+            });
+            
+            console.log(register);
+            TESTE */ 
             const resposta: Retorno = {
                 tipo: 'Sucess',
                 description: courses
@@ -30,7 +45,7 @@ class CourseService {
     async getCourse(req) {
         const courseId = req.params.course_id;
         try {
-            const course = await CourseConnect.findByPk(courseId);
+            const course = await Course.findByPk(courseId);
             if (course) {
                 const resposta: Retorno = {
                     tipo: 'Sucess',
@@ -56,7 +71,7 @@ class CourseService {
     async postRegisterCourse(req) {
         const { name, description } = req.body;
         try {
-            const newCourse = await CourseConnect.create({ name, description });
+            const newCourse = await Course.create({ name, description });
             const resposta: Retorno = {
                 tipo: 'Sucess',
                 description: newCourse
@@ -75,7 +90,7 @@ class CourseService {
     async deleteCourse(req) {
         const courseId = req.params.course_id;
         try {
-            const course = await CourseConnect.findByPk(courseId);
+            const course = await Course.findByPk(courseId);
             if (course) {
                 await course.destroy();
                 const resposta: Retorno = {
@@ -103,7 +118,7 @@ class CourseService {
         const courseId = req.params.course_id;
         const { name, description } = req.body;
         try {
-            const course = await CourseConnect.findByPk(courseId);
+            const course = await Course.findByPk(courseId);
         if (course) {
             await course.update({ name, description });
             
@@ -133,7 +148,7 @@ class CourseService {
         const courseId = req.params.course_id;
         const { name, description } = req.body;
         try {
-            const course = await CourseConnect.findByPk(courseId);
+            const course = await Course.findByPk(courseId);
             if (course) {
                 await course.update({ name, description });
                 const resposta: Retorno = {
@@ -156,6 +171,61 @@ class CourseService {
               return resposta;
         }
     }
+
+    async postRegister(req) {
+        const { id_aluno, id_curso } = req.body;
+        try {
+            const student = await Student.findByPk(id_aluno);
+            const course = await Course.findByPk(id_curso);
+            if (student && course) {
+                const registration = await course.addStudent(student,{ through: { selfGranted: false } });
+            const resposta: Retorno = {
+                tipo: 'Sucess',
+                description: registration
+            };
+            return resposta;
+            }else {
+                const resposta: Retorno = {
+                    tipo: 'Error',
+                    description: 'NOT FOUND'
+                  };
+                  return resposta;
+            }
+        } catch (error) {
+            const resposta: Retorno = {
+                tipo: 'Error',
+                description: error
+              };
+              return resposta;
+        }
+    }
+
+    async getCourseRegister(req) {
+        const courseId = req.params.course_id;
+        try {
+            const course = await Course.findByPk(courseId);
+            if (course) {
+                const resposta: Retorno = {
+                    tipo: 'Sucess',
+                    description: course
+                  };        
+                return resposta;
+        } else {
+            const resposta: Retorno = {
+                tipo: 'Error',
+                description: 'NOT FOUND'
+              };
+              return resposta;
+        }
+        } catch (error) {
+            const resposta: Retorno = {
+                tipo: 'Error',
+                description: error
+              };
+              return resposta;
+        }
+    }
+
   }
 
 module.exports = new CourseService();

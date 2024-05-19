@@ -4,6 +4,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const rotaManagement = require('./routes/Student&Course');
+
 // inicia o serviço morgan
 app.use(morgan('dev'));
 // adiciona o express ao app
