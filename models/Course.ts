@@ -1,12 +1,10 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 import {sequelize} from '../utils/pacotes';
-import {Student} from './Student';
 
 export class Course extends Model {}
 
 Course.init(
   {
-    // Model attributes are defined here
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,43 +12,23 @@ Course.init(
     description: {
       type: DataTypes.STRING,
       allowNull: true,
-      // allowNull defaults to true
     },
   },
   {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'Course', // We need to choose the model name
+    sequelize,
+    modelName: 'Course',
     tableName: 'courses',
     timestamps: false,
   },
 );
 
-
-
-// MEU PADRAO
-/*
-    const Course = sequelize.define('Course', {
-      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-      name: DataTypes.STRING,
-      description: DataTypes.STRING
-    },
-    {
-      timestamps: false,
-      tableName: 'courses',
-    });
-  sequelize.sync({alter:true})
+sequelize.sync({alter:true})
   .then(() => {
     console.log('Tabela Course sincronizada');
   })
   .catch(error => {
     console.error('Erro ao sincronizar a tabela Course:', error);
   });
-  
- // Student.belongsToMany(Course, { through: 'course_student' });
- 
- export default Course;
-
 
  // PADRAO ENSINADO
 /*

@@ -112,5 +112,6 @@ async function getStudentRegister(req, res) {
     postRegisterStudent,
     deleteStudent,
     putStudent,
-    patchStudent
+    patchStudent,
+    getStudentRegister
   };

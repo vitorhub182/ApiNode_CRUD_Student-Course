@@ -160,11 +160,14 @@ class StudentService {
     async getStudentRegister(req) {
         const studentId = req.params.student_id;
         try {
-            const student = await Student.findByPk(studentId);
-            if (student) {
+            const listCourse = await Student.findOne({
+                where: { id: studentId },
+                include: Course,
+              });
+            if (listCourse) {
                 const resposta: Retorno = {
                     tipo: 'Sucess',
-                    description: student
+                    description: listCourse
                   };        
                 return resposta;
         } else {

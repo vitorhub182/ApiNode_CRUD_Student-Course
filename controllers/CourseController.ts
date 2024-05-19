@@ -133,5 +133,6 @@ async function getCourseRegister(req, res) {
     deleteCourse,
     putCourse,
     patchCourse,
-    postRegister
+    postRegister,
+    getCourseRegister
   };

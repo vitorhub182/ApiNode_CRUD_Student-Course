@@ -7,7 +7,6 @@ export class Student extends Model {}
 
 Student.init(
   {
-    // Model attributes are defined here
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -15,38 +14,22 @@ Student.init(
     last_name: {
       type: DataTypes.STRING,
       allowNull: true,
-      // allowNull defaults to true
     },
   },
   {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName: 'Student', // We need to choose the model name
+    sequelize, 
+    modelName: 'Student', 
     tableName: 'students',
     timestamps: false,
   },
 );
-
-// MEU PADRAO
-/*
-  const Student = sequelize.define('Student', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: DataTypes.STRING,
-    last_name: DataTypes.STRING
-  },
-  {
-    timestamps: false,
-    tableName: 'students',
-  });
-  sequelize.sync({alter:true})
-  .then(() => {
-    console.log('Tabela Student sincronizada');
-  })
-  .catch(error => {
-    console.error('Erro ao sincronizar a tabela Student:', error);
-  });
-
-export default Student;
+sequelize.sync({alter:true})
+.then(() => {
+  console.log('Tabela Student sincronizada');
+})
+.catch(error => {
+  console.error('Erro ao sincronizar a tabela Student:', error);
+});
 
 // PADRAO ENSINADO
 /*

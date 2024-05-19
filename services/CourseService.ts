@@ -203,11 +203,14 @@ class CourseService {
     async getCourseRegister(req) {
         const courseId = req.params.course_id;
         try {
-            const course = await Course.findByPk(courseId);
-            if (course) {
+            const listStudent = await Course.findOne({
+                where: { id: courseId },
+                include: Student,
+              });
+            if (listStudent) {
                 const resposta: Retorno = {
                     tipo: 'Sucess',
-                    description: course
+                    description: listStudent 
                   };        
                 return resposta;
         } else {

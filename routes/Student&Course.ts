@@ -18,6 +18,6 @@ router.put('/student/STUDENT=:student_id', StudentController.putStudent);
 router.patch('/student/STUDENT=:student_id', StudentController.patchStudent);
 
 router.post('/register/', CourseController.postRegister);
-router.post('/register/student/STUDENT=:student_id', StudentController.getStudentRegister);
-router.post('/register/course/COURSE=:course_id', CourseController.getCourseRegister);
+router.get('/register/student/STUDENT=:student_id', StudentController.getStudentRegister);
+router.get('/register/course/COURSE=:course_id', CourseController.getCourseRegister);
 module.exports = router;
