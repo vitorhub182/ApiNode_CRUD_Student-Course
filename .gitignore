@@ -1,1 +1,2 @@
-node_modules
+./ApiSequelize/node_modules
+./ApiKnex/node_modules
