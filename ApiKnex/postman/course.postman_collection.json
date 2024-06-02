@@ -256,7 +256,7 @@
 			"response": []
 		},
 		{
-			"name": "register list student Copy",
+			"name": "register list course",
 			"event": [
 				{
 					"listen": "test",
@@ -275,7 +275,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/register/course/STUDENT=1",
+					"raw": "http://localhost:3001/register/student/STUDENT=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -283,7 +283,7 @@
 					"port": "3001",
 					"path": [
 						"register",
-						"course",
+						"student",
 						"STUDENT=1"
 					]
 				},

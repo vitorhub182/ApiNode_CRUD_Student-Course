@@ -42,3 +42,8 @@ npm install sequelize pg pg-hstore
 ```shell
 docker-compose up
 ```
+
+### STRUTURANDO O BANCO
+```shell
+  npx knex migrate:latest
+``` 
